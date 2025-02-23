@@ -7,7 +7,7 @@ SELECT
     DATEADD(DAY, 
         DATEDIFF(DAY, MIN(Sales.Orders.orderdate), MAX(Sales.Orders.orderdate)) / COUNT(Sales.Orders.custid), 
         MAX(Sales.Orders.orderdate)
-    ) AS NewDate
+    ) AS NextPredictedOrder
 FROM 
     Sales.Customers 
 INNER JOIN 

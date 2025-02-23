@@ -22,5 +22,12 @@ namespace SalesDatePrediction.Api.Controllers
             return Ok(query);
         }
 
+        [HttpGet("GetClientOrders/{cusId}")]
+        public async Task<IActionResult> GetClientOrders(int cusId)
+        { 
+            var query = await _customerViewService.GetClientOders(cusId);
+            return Ok(query);
+        }
+
     }
 }

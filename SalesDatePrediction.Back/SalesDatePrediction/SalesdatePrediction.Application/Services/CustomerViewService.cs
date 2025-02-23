@@ -1,4 +1,5 @@
 ﻿using SalesdatePrediction.Application.Interfaces;
+using SalesdatePrediction.Domain.DTOs;
 using SalesdatePrediction.Domain.Entities;
 using SalesdatePrediction.Domain.Interfaces;
 using System;
@@ -21,6 +22,12 @@ namespace SalesdatePrediction.Application.Services
         public Task<IEnumerable<CustomerView>> GetAll()
         {
             var query = _customerViewRepository.GetAll();
+            return query;
+        }
+
+        public Task<IEnumerable<OrderDto>> GetClientOders(int cusId)
+        {
+            var query = _customerViewRepository.GetClientOders(cusId);
             return query;
         }
 

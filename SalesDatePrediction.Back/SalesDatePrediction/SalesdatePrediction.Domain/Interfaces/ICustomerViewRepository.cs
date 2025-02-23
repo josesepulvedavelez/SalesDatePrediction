@@ -1,4 +1,5 @@
-﻿using SalesdatePrediction.Domain.Entities;
+﻿using SalesdatePrediction.Domain.DTOs;
+using SalesdatePrediction.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace SalesdatePrediction.Domain.Interfaces
     public interface ICustomerViewRepository
     {
         Task<IEnumerable<CustomerView>> GetAll();
+        Task<IEnumerable<OrderDto>> GetClientOders(int cusId);
     }
 }
