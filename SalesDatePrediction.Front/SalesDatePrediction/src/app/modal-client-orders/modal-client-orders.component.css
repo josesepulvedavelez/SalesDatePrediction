@@ -1,0 +1,25 @@
+.modal-container {
+    width: 900px;
+    max-width: 100%;
+  }
+  
+  .modal-header {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    padding: 16px;
+  }
+  
+  .mat-table {
+    width: 100%;
+  }
+  
+  .mat-header-cell, .mat-cell {
+    padding: 8px;
+  }
+  
+  .modal-footer {
+    text-align: right;
+    padding: 16px;
+  }
+  

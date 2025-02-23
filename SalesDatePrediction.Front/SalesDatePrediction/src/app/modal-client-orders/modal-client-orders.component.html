@@ -1,0 +1,48 @@
+<mat-dialog-content class="modal-container">
+    <mat-toolbar color="warn" class="modal-header">
+      Customer AHPOP - Orders
+    </mat-toolbar>
+  
+    <mat-table [dataSource]="data.orders" class="mat-elevation-z8">
+      <!-- Columnas -->
+      <ng-container matColumnDef="orderId">
+        <mat-header-cell *matHeaderCellDef> Order ID </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.orderid }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="requiredDate">
+        <mat-header-cell *matHeaderCellDef> Required Date </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.requireddate }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="shippedDate">
+        <mat-header-cell *matHeaderCellDef> Shipped Date </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.shippeddate }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="shipName">
+        <mat-header-cell *matHeaderCellDef> Ship Name </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.shipname }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="shipAddress">
+        <mat-header-cell *matHeaderCellDef> Ship Address </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.shipaddress }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="shipCity">
+        <mat-header-cell *matHeaderCellDef> Ship City </mat-header-cell>
+        <mat-cell *matCellDef="let order"> {{ order.shipcity }} </mat-cell>
+      </ng-container>
+  
+      <!-- Header y filas -->
+      <mat-header-row *matHeaderRowDef="['orderId', 'requiredDate', 'shippedDate', 'shipName', 'shipAddress', 'shipCity']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['orderId', 'requiredDate', 'shippedDate', 'shipName', 'shipAddress', 'shipCity'];"></mat-row>
+    </mat-table>
+  
+    <!-- Footer -->
+    <div class="modal-footer">
+      <button mat-button color="warn" (click)="close()">CLOSE</button>
+    </div>
+  </mat-dialog-content>
+  
