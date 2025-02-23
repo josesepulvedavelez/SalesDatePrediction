@@ -34,6 +34,15 @@ builder.Services.AddDbContext<StoreSampleContext>(options => options.UseSqlServe
 builder.Services.AddScoped<ICustomerViewService, CustomerViewService>();
 builder.Services.AddScoped<ICustomerViewRepository, CustomerViewRepository>();
 
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+builder.Services.AddScoped<IShipperService, ShipperService>();
+builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
