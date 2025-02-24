@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SalesdatePrediction.Application.Interfaces;
+using SalesdatePrediction.Domain.DTOs;
 
 namespace SalesDatePrediction.Api.Controllers
 {
@@ -13,6 +14,13 @@ namespace SalesDatePrediction.Api.Controllers
         public CustomerViewController(ICustomerViewService customerViewService) 
         { 
             _customerViewService = customerViewService;
+        }
+
+        [HttpPost("AddNewOrder")]
+        public async Task<IActionResult> AddNewOrder(OrderDetailDto orderDetailDto)
+        { 
+            var query = await _customerViewService.AddNewOrder(orderDetailDto);
+            return Ok(query);
         }
 
         [HttpGet("GetAll")]

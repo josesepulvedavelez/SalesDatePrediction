@@ -12,5 +12,6 @@ namespace SalesdatePrediction.Application.Interfaces
     {
         Task<IEnumerable<CustomerView>> GetAll();
         Task<IEnumerable<OrderDto>> GetClientOders(int cusId);
+        Task<int> AddNewOrder(OrderDetailDto orderDetailDto);
     }
 }

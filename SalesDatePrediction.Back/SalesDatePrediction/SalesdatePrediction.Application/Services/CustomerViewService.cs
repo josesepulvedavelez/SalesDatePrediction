@@ -19,6 +19,12 @@ namespace SalesdatePrediction.Application.Services
             _customerViewRepository = customerViewRepository;
         }
 
+        public Task<int> AddNewOrder(OrderDetailDto orderDetailDto)
+        {
+            var query = _customerViewRepository.AddNewOrder(orderDetailDto);
+            return query;
+        }
+
         public Task<IEnumerable<CustomerView>> GetAll()
         {
             var query = _customerViewRepository.GetAll();

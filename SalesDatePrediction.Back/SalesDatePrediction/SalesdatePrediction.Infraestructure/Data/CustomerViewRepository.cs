@@ -19,6 +19,55 @@ namespace SalesdatePrediction.Infraestructure.Data
             _sampleContext = storeSampleContext;
         }
 
+        public async Task<int> AddNewOrder(OrderDetailDto orderDetailDto)
+        {
+            try
+            {
+                using (var transaction = _sampleContext.Database.BeginTransactionAsync())
+                {
+                    Order order = new Order()
+                    {
+                        Empid = orderDetailDto.Empid,
+                        Shipperid = orderDetailDto.Shipperid,
+                        Shipname = orderDetailDto.Shipname,
+                        Shipaddress = orderDetailDto.Shipaddress,
+                        Shipcity = orderDetailDto.Shipcity,
+                        Orderdate = orderDetailDto.Orderdate,
+                        Requireddate = orderDetailDto.Requireddate,
+                        Shippeddate = orderDetailDto.Shippeddate,
+                        Freight = orderDetailDto.Freight,
+                        Shipcountry = orderDetailDto.Shipcountry
+                    };
+
+                    await _sampleContext.Orders.AddAsync(order);
+                    await _sampleContext.SaveChangesAsync();
+
+                    var orderId = order.Orderid;
+
+                    var orderDetail = new OrderDetail()
+                    {
+                        Orderid = orderId,
+                        Productid = orderDetailDto.Productid,
+                        Unitprice = orderDetailDto.Unitprice,
+                        Qty = orderDetailDto.Qty,
+                        Discount = orderDetailDto.Discount
+                    };
+
+                    await _sampleContext.OrderDetails.AddAsync(orderDetail);
+                    await _sampleContext.SaveChangesAsync();
+
+                    await _sampleContext.Database.CommitTransactionAsync();
+
+                    return 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                await _sampleContext.Database.RollbackTransactionAsync();
+                return 0;
+            }
+        }
+
         public async Task<IEnumerable<CustomerView>> GetAll()
         {
             var query = await _sampleContext.CustomerViews.ToListAsync();
