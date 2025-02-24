@@ -27,7 +27,7 @@ namespace SalesdatePrediction.Infraestructure.Data
             {
                 lstShipperDto.Add(new ShipperDto
                 {
-                    Supplierid = item.Shipperid,
+                    ShipperId = item.Shipperid,
                     Companyname = item.Companyname
                 });
             }

@@ -6,26 +6,37 @@ import { CommonModule } from '@angular/common';
 import { CustomerView } from '../../models/CustomerView';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalClientOrdersComponent } from '../../modal-client-orders/modal-client-orders.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { OrderDto } from '../../models/OrderDto';
+import { NewOrderModalComponent } from '../../new-order-modal/new-order-modal.component';
 @Component({
   selector: 'app-customer-list',
   standalone: true,
-  imports: [CommonModule,
-     MatTableModule,
-     MatPaginatorModule,
-     ModalClientOrdersComponent,
-     MatButtonModule
-    ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    ModalClientOrdersComponent,
+    NewOrderModalComponent,
+    MatButtonModule,
+  ],
   templateUrl: './customer-view.component.html',
 })
 export class CustomerComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['companyname', 'lastOrderDate', 'nextPredictedOrder','actions']; 
-  dataSource = new MatTableDataSource<CustomerView>();  
-  dataSourceOrders: OrderDto[] = []; 
+  displayedColumns: string[] = [
+    'companyname',
+    'lastOrderDate',
+    'nextPredictedOrder',
+    'actions',
+  ];
+  dataSource = new MatTableDataSource<CustomerView>();
+  dataSourceOrders: OrderDto[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private customerViewService: CustomerViewService,public dialog: MatDialog) {}
+  constructor(
+    private customerViewService: CustomerViewService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.loadCustomers();
@@ -45,16 +56,16 @@ export class CustomerComponent implements OnInit, AfterViewInit {
       },
       complete: () => {
         console.log('Carga de clientes completada');
-      }
+      },
     });
   }
-  openModal(cusId: number): void {
+  openModal(cusId: number, companyname: string): void {
     this.customerViewService.getClientOrders(cusId).subscribe({
       next: (data) => {
-        this.dataSourceOrders= data;
+        this.dataSourceOrders = data;
         this.dialog.open(ModalClientOrdersComponent, {
           width: '940px',
-          data: { orders: this.dataSourceOrders }
+          data: { orders: this.dataSourceOrders, companyname },
         });
       },
       error: (error) => {
@@ -62,8 +73,12 @@ export class CustomerComponent implements OnInit, AfterViewInit {
       },
       complete: () => {
         console.log('Carga de clientes completada');
-      }      
-    })
+      },
+    });
   }
-
+  openNewOrderModal(): void {
+    this.dialog.open(NewOrderModalComponent, {
+      width: '600px',
+    });
+  }
 }

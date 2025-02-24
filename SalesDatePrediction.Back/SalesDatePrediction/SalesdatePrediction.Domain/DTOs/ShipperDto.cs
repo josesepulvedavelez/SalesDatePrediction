@@ -8,7 +8,7 @@ namespace SalesdatePrediction.Domain.DTOs
 {
     public class ShipperDto
     {
-        public int Supplierid { get; set; }
+        public int ShipperId { get; set; }
 
         public string Companyname { get; set; }
     }

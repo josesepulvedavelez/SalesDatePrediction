@@ -9,7 +9,7 @@ import { OrderDto } from '../models/OrderDto';
   providedIn: 'root',
 })
 export class CustomerViewService {
-  private apiUrl = `${enviroment.apiUrl}/CustomerView`; // URL de tu API
+  private apiUrl = `${enviroment.apiUrl}/CustomerView`; 
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,7 @@ export class CustomerViewService {
     return this.http.get<CustomerView[]>(`${this.apiUrl}/GetAll`);
   }
 
-  getClientOrders(cusId: number): Observable<OrderDto[]> {    
+  getClientOrders(cusId: number): Observable<OrderDto[]> {
     return this.http.get<OrderDto[]>(`${this.apiUrl}/GetClientOrders/${cusId}`);
   }
 }
